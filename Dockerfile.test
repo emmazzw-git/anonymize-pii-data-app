@@ -1,0 +1,14 @@
+FROM python:3.11
+
+RUN pip3 install --upgrade faker pytest pytest-mock
+
+WORKDIR "/test"
+
+COPY anonymization ./anonymization
+COPY __init__.py ./
+COPY main.py ./
+COPY tests ./tests
+
+ENV PYTHONPATH /test/
+
+CMD [ "pytest" ]
